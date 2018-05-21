@@ -18,6 +18,7 @@ class App extends Component {
             name: '',
             history: []
         }
+    this.send = this.send.bind(this);
     }
 
     componentDidMount() {
@@ -130,10 +131,11 @@ class App extends Component {
                     <input
                         id="message" 
                         type="text"
+                        value={this.state.mess}
                         onChange={(e) => this.setState({mess: e.target.value})}
                         placeholder="Write message"
                     />
-                    <button onClick={this.send.bind(this)}>
+                    <button onClick={(e) => this.send(e)}>
                         Send
                     </button>
                     <label>User(s) online:</label>
@@ -216,7 +218,7 @@ const style = StyleSheet.create({
     mess: {
         fontFamily: 'Open Sans Condensed',
         fontSize: 20,
-        width: '100%',
+        width: '98%',
         margin: '0 5px',
         wordWrap: 'break-word',
         borderTop: '1px solid #666'
@@ -228,14 +230,20 @@ const style = StyleSheet.create({
         textAlign: 'center'
     },
     onlinelist: {
-        margin: '5px auto'
+        margin: '5px auto',
+        ':nth-child(1n) > img': {
+            borderRadius: '50%'
+        }
     },
     nickname: {
         display: 'block',
-        padding: '0 2px',
+        padding: 1,
         backgroundColor: 'blue',
         borderRadius: 3,
         height: 32
+    },
+    messText: {
+        maxWidth: 650
     }
 })
 
